@@ -5,12 +5,12 @@ import { useEffect } from "react";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
-import axios from 'axios'
+import axios from "../src/utils/axiosConfig";
 
 function App() {
   const [user, setUser] = useState(null);
   const [error, setError] = useState('');
-  console.log(user);
+  // console.log(user);
   useEffect(() => {
     const fetchUser = async() => {
       const token = localStorage.getItem("token");
@@ -31,9 +31,9 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Navbar />
+      <Navbar user={user} setUser={setUser} />
       <Routes>
-        <Route path="/" element={<Home user={user} />} /> 
+        <Route path="/" element={<Home user={user} error={error} />} /> 
         <Route path="/login" element={<Login setUser={setUser} /> } />
         <Route path="/register" element={<Register setUser={setUser} />} />
       </Routes>

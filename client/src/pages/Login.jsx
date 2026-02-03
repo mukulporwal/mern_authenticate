@@ -1,6 +1,7 @@
-import axios from 'axios';
+import axios from "../utils/axiosConfig";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function Login({ setUser}) {
     const [formData, setFormData] = useState({
@@ -21,9 +22,9 @@ function Login({ setUser}) {
             const res = await axios.post("/api/users/login", formData);
             localStorage.setItem("token", res.data.token);
             setUser(res.data.user);
-            nav('/dashboard');
+            nav('/');
         } catch (error) {
-            setError(error.response?.data?.messgae || "Login failed")
+            setError(error.response?.data?.message || "Login failed")
         }
     }
     

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "../utils/axiosConfig";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -20,13 +20,12 @@ function Register({ setUser}) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("api/users/register", formData);
+            const res = await axios.post("/api/users/register", formData);
             localStorage.setItem("token", res.data.token);
-            console.log(res.data);
-            setUser(res.data);
+            setUser(res.data.user);
             nav('/');
         } catch (error) {
-            setError(error.response?.data?.messgae || "Register failed")
+            setError(error.response?.data?.message || "Register failed")
         }
     }
     
