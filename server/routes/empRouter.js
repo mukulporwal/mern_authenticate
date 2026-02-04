@@ -1,10 +1,14 @@
 import express from "express";
-import { empCreate } from "../controllers/employeeController.js";
+import { empCreate, empDelete, empUpdate, getAllEmp, getEmpById } from "../controllers/employeeController.js";
 
 console.log("✅ empRouter loaded");
 
 const router = express.Router();
 
-router.post("/empCreate", empCreate);
+router.post("/createUser", empCreate);
+router.get("/allUser", getAllEmp);
+router.get("/user/:id", getEmpById);
+router.put("/updateUser/:id", empUpdate)
+router.delete("/deleteUser/:id", empDelete)
 
-export default router
+export default router;
